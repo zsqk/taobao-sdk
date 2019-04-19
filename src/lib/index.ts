@@ -1,6 +1,7 @@
 import * as crypto from 'crypto';
 
 export { hashFn as hash };
+
 /**
  * hash 散列函数
  * @param method - 散列类型, 具体值参看 `openssl list-message-digest-algorithms`

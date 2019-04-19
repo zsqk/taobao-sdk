@@ -1,5 +1,3 @@
-import * as lib from './lib';
+import { genSign } from './sign';
 
-export default {
-  hash: lib.hash,
-};
+export { genSign };
