@@ -1,7 +1,5 @@
 import * as crypto from 'crypto';
 
-export { hashFn as hash };
-
 /**
  * hash 散列函数
  * @param method - 散列类型, 具体值参看 `openssl list-message-digest-algorithms`
@@ -13,8 +11,10 @@ function hashFn(
   method: string,
   data: string,
   encoding: crypto.HexBase64Latin1Encoding = 'hex'
-) {
+): string {
   const hash = crypto.createHash(method);
   hash.update(data, 'utf8');
   return hash.digest(encoding);
 }
+
+export { hashFn as hash };
