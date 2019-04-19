@@ -1,0 +1,14 @@
+{
+  "name": "@zsqk/taobao-sdk",
+  "version": "0.0.1",
+  "description": "for taobao open",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "taobao"
+  ],
+  "author": "iugo",
+  "license": "ISC"
+}
