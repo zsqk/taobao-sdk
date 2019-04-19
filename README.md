@@ -1,4 +1,4 @@
-# taobao-sdk
+# taobao-sdk [![npm version](https://img.shields.io/npm/v/@zsqk/taobao-sdk.svg?style=flat)](https://www.npmjs.com/package/@zsqk/taobao-sdk)
 
 用于淘宝开放平台, 用来替代 topSDK.
 
@@ -8,3 +8,4 @@
 
 - sign 生成
 - AWS sign 验证
+- 通用请求
