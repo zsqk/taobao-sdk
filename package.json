@@ -1,6 +1,6 @@
 {
   "name": "@zsqk/taobao-sdk",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "for taobao open",
   "main": "build/index.js",
   "scripts": {
