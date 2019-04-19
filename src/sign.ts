@@ -1,4 +1,5 @@
 import { hash } from './lib';
+import { APIGatewayProxyEvent } from 'aws-lambda';
 
 /**
  *
@@ -8,14 +9,14 @@ import { hash } from './lib';
  */
 function genSign(
   secret: string,
-  header: string | HeaderObject,
+  urlParameters: string | Parameters,
   body: string = ''
 ): string {
   let headerStr: string;
-  if (typeof header === 'string') {
-    headerStr = header;
+  if (typeof urlParameters === 'string') {
+    headerStr = urlParameters;
   } else {
-    headerStr = Object.entries(header)
+    headerStr = Object.entries(urlParameters)
       .sort()
       .reduce((acc, v): string => acc + v[0] + v[1], '');
   }
@@ -23,8 +24,28 @@ function genSign(
   return hash('MD5', str).toUpperCase();
 }
 
-interface HeaderObject {
+/**
+ * 检查 (AWS Lambda) HTTP 请求中签名是否正确
+ * @param event
+ */
+function checkSignInLambda(event: APIGatewayProxyEvent): boolean {
+  if (!process.env.TOP_SECRET) {
+    return false;
+  }
+  if (event.queryStringParameters === null) {
+    return false;
+  }
+  const { sign = '', ...urlParameters } = event.queryStringParameters;
+  if (!sign) {
+    return false;
+  }
+  return (
+    sign === genSign(process.env.TOP_SECRET, urlParameters, event.body || '')
+  );
+}
+
+interface Parameters {
   [key: string]: string;
 }
 
-export { genSign };
+export { genSign, checkSignInLambda };
