@@ -1,8 +1,11 @@
 {
   "name": "@zsqk/taobao-sdk",
-  "version": "0.1.0",
-  "description": "for taobao open",
+  "version": "0.1.1",
+  "description": "For TOP(Taobao Open Platform) API.",
   "main": "build/index.js",
+  "engines": {
+    "node": ">=8"
+  },
   "scripts": {
     "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,5 +20,16 @@
     "@types/node": "^11.13.5",
     "typescript": "^3.4.4"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zsqk/taobao-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zsqk/taobao-sdk/issues"
+  },
+  "homepage": "https://github.com/zsqk/taobao-sdk",
+  "contributors": [
+    "iugo <npm@iugo.dev> (https://iugo.dev/)"
+  ],
   "dependencies": {}
 }
