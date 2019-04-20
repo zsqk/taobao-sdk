@@ -41,7 +41,10 @@ function topRequest(passParams: { method: string }): Promise<any> {
     throw new Error('没有从环境变量中读取到 TOP 密钥');
   }
   const options = {
-    hostname: 'eco.taobao.com',
+    hostname:
+      process.env.NODE_ENV === 'test'
+        ? 'gw.api.tbsandbox.com'
+        : 'eco.taobao.com',
     path: '/router/rest',
     method: 'POST',
   };
