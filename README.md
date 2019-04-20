@@ -6,6 +6,6 @@
 
 目前支持功能:
 
-- sign 生成
-- AWS sign 验证
-- 通用请求
+- Promise(async/await) 风格.
+- 在 AWS Lambda 中通过 sign 验证来自 TOP 的请求.
+- 发起 TOP 请求.
