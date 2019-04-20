@@ -34,9 +34,20 @@ function request(
 }
 
 /**
- * TOP 请求
+ * 发起 TOP 请求
+ * @param method     - 需要请求的 TOP API, 例如 `taobao.time.get`
+ * @param passParams - 业务请求参数
  */
-function topRequest(passParams: { method: string }): Promise<any> {
+async function topRequest(
+  method: string,
+  passParams: {
+    [key: string]: string | number;
+  } = {}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+): Promise<any> {
+  if (!method) {
+    throw new Error('缺少 method 参数. 请指定需要请求的 API.');
+  }
   if (!process.env.TOP_KEY || !process.env.TOP_SECRET) {
     throw new Error('没有从环境变量中读取到 TOP 密钥');
   }
@@ -60,12 +71,11 @@ function topRequest(passParams: { method: string }): Promise<any> {
   params.sign = sign;
   const searchParams = new URLSearchParams(params);
   options.path += `?${searchParams.toString()}`;
-  return request(options).then(res => {
-    if (res.body) {
-      res.body = JSON.parse(res.body);
-    }
-    return res;
-  });
+  const res = await request(options);
+  if (res.body) {
+    res.body = JSON.parse(res.body);
+  }
+  return res;
 }
 
 function genTaobaoTimestamp(date = new Date()): string {
