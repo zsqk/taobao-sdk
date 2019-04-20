@@ -1,4 +1,4 @@
-# taobao-sdk [![npm version](https://img.shields.io/npm/v/@zsqk/taobao-sdk.svg?style=flat)](https://www.npmjs.com/package/@zsqk/taobao-sdk)
+# taobao-sdk [![npm version](https://img.shields.io/npm/v/@zsqk/taobao-sdk.svg?style=flat)](https://www.npmjs.com/package/@zsqk/taobao-sdk) ![node version](https://img.shields.io/node/v/@zsqk/taobao-sdk.svg?style=flat)
 
 用于淘宝开放平台, 用来替代 topSDK.
 
