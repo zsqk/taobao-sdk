@@ -81,7 +81,7 @@ async function topRequest(
 
 function genTaobaoTimestamp(date = new Date()): string {
   const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const month = to2PadString(date.getMonth() + 1);
   const day = to2PadString(date.getDate());
   const hour = to2PadString(date.getHours());
   const minute = to2PadString(date.getMinutes());
