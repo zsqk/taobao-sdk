@@ -1,4 +1,9 @@
 import * as crypto from 'crypto';
+import { IncomingHttpHeaders } from 'http2';
+import * as https from 'https';
+import { IncomingMessage } from 'http';
+
+export { hashFn, requestFn };
 
 /**
  * hash 散列函数
@@ -17,4 +22,29 @@ function hashFn(
   return hash.digest(encoding);
 }
 
-export { hashFn as hash };
+/**
+ * 普通请求 (获取最终数据, 非 steam)
+ */
+function requestFn(
+  options: https.RequestOptions
+): Promise<{
+  statusCode: number;
+  headers: IncomingHttpHeaders;
+  body: string;
+}> {
+  return new Promise((resolve, reject) => {
+    const req = https.request(options, (res: IncomingMessage) => {
+      res.on('data', data => {
+        resolve({
+          statusCode: res.statusCode as number,
+          headers: res.headers,
+          body: data.toString(),
+        });
+      });
+    });
+    req.on('error', err => {
+      reject(err);
+    });
+    req.end();
+  });
+}

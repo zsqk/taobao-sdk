@@ -1,37 +1,8 @@
-import * as https from 'https';
-import { IncomingMessage } from 'http';
 import { URLSearchParams } from 'url';
 import { genSign } from './sign';
-import { IncomingHttpHeaders } from 'http2';
+import { requestFn } from './lib';
 
 export { topRequest };
-
-/**
- * 普通请求
- */
-function request(
-  options: https.RequestOptions
-): Promise<{
-  statusCode: number;
-  headers: IncomingHttpHeaders;
-  body: string;
-}> {
-  return new Promise((resolve, reject) => {
-    const req = https.request(options, (res: IncomingMessage) => {
-      res.on('data', data => {
-        resolve({
-          statusCode: res.statusCode as number,
-          headers: res.headers,
-          body: data.toString(),
-        });
-      });
-    });
-    req.on('error', e => {
-      reject(e);
-    });
-    req.end();
-  });
-}
 
 /**
  * 发起 TOP 请求
@@ -72,7 +43,7 @@ async function topRequest(
   params.sign = sign;
   const searchParams = new URLSearchParams(params);
   options.path += `?${searchParams.toString()}`;
-  const res = await request(options);
+  const res = await requestFn(options);
   if (res.body) {
     res.body = JSON.parse(res.body);
   }

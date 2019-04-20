@@ -1,4 +1,4 @@
-import { hash } from './lib';
+import { hashFn } from './lib';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 
 /**
@@ -21,7 +21,7 @@ function genSign(
       .reduce((acc, v): string => acc + v[0] + v[1], '');
   }
   const str = secret + headerStr + body + secret;
-  return hash('MD5', str).toUpperCase();
+  return hashFn('MD5', str).toUpperCase();
 }
 
 /**
