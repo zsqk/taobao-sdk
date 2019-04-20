@@ -1,6 +1,6 @@
 {
   "name": "@zsqk/taobao-sdk",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "For TOP(Taobao Open Platform) API.",
   "main": "build/index.js",
   "engines": {
