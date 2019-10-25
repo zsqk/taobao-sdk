@@ -31,8 +31,8 @@ async function topRequest(
     method: 'POST',
   };
   const params: { [key: string]: string } = {
-    app_key: process.env.TOP_KEY, // eslint-disable-line @typescript-eslint/camelcase
-    sign_method: 'md5', // eslint-disable-line @typescript-eslint/camelcase
+    'app_key': process.env.TOP_KEY,
+    'sign_method': 'md5',
     simplify: 'true',
     timestamp: genTaobaoTimestamp(),
     format: 'json',
