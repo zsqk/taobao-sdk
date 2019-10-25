@@ -10,7 +10,7 @@ import { APIGatewayProxyEvent } from 'aws-lambda';
 function genSign(
   secret: string,
   urlParameters: string | Parameters,
-  body: string = ''
+  body = '',
 ): string {
   let headerStr: string;
   if (typeof urlParameters === 'string') {
