@@ -1,4 +1,4 @@
 import { genSign } from './sign';
-import { topRequest } from './request';
+import { genTaobaoTimestamp, topRequest } from './request';
 
-export { genSign, topRequest };
+export { genSign, genTaobaoTimestamp, topRequest };

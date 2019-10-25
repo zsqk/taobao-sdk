@@ -2,7 +2,7 @@ import { URLSearchParams } from 'url';
 import { genSign } from './sign';
 import { requestFn } from './lib';
 
-export { topRequest };
+export { topRequest, genTaobaoTimestamp };
 
 /**
  * 发起 TOP 请求
