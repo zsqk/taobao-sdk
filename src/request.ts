@@ -31,6 +31,7 @@ async function topRequest(
     method: 'POST',
   };
   const params: { [key: string]: string } = {
+    method,
     'app_key': process.env.TOP_KEY,
     'sign_method': 'md5',
     simplify: 'true',
