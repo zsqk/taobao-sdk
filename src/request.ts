@@ -5,7 +5,7 @@ import { requestFn } from './lib';
 export { topRequest, genTaobaoTimestamp };
 
 /**
- * 发起 TOP 请求
+ * 发起 TOP 请求 / 向淘宝开放平台发送请求
  * @param method     - 需要请求的 TOP API, 例如 `taobao.time.get`
  * @param passParams - 业务请求参数
  */

@@ -2,14 +2,16 @@ import { hashFn } from './lib';
 import { APIGatewayProxyEvent } from 'aws-lambda';
 
 /**
- *
- * @param secret 淘宝开放平台
- * @param headerStr
+ * 生成请求签名, 可用于接收淘宝开放平台的请求时的签名验证
+ * @param secret 应用密钥
+ * @param urlParameters 请求 URL query
  * @param body 请求 body
  */
 function genSign(
   secret: string,
-  urlParameters: string | Parameters,
+  urlParameters: string | {
+    [key: string]: string;
+  },
   body = '',
 ): string {
   let headerStr: string;
@@ -42,10 +44,6 @@ function checkSignInLambda(event: APIGatewayProxyEvent): boolean {
   return (
     sign === genSign(process.env.TOP_SECRET, urlParameters, event.body || '')
   );
-}
-
-interface Parameters {
-  [key: string]: string;
 }
 
 export { genSign, checkSignInLambda };
